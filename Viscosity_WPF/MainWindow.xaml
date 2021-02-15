@@ -49,8 +49,11 @@
             <TextBlock FontSize="20" FontFamily="Calibri" HorizontalAlignment="Left"
                         Margin="0 8 5 10" >Исходное значение:</TextBlock>
             <TextBox x:Name="SourceValue" Text="0" Width="110" Height="28" TextChanged="SourceValue_Changed"
-                     TextAlignment="Right" FontSize="18" Margin="0 8 5 0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
-            <ComboBox Name="SourceUnit" Width="110" Height="28" FontSize="16"/>
+                     TextAlignment="Right" FontSize="18" Margin="0 8 5 0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                     PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyDown="TextBox_PreviewKeyDown"
+                     IsReadOnly="True"
+                     />
+                <ComboBox Name="SourceUnit" Width="110" Height="28" FontSize="16"/>
             </WrapPanel>
             <WrapPanel Margin="20 0 0 0">
                 <TextBlock FontSize="20" FontFamily="Calibri" HorizontalAlignment="Left"

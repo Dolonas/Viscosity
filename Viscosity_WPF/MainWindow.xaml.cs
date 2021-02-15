@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 
 
@@ -76,30 +77,7 @@ namespace Viscosity_WPF
         {
             var t = (TextBox)sender;
 
-            if (t.Text == "")
-            {
-                t.Text = "0";
-                prevselectionstart = 1;
-                prevselectionend = 1;
-                t.Select(prevselectionstart, prevselectionend);
-            }
-            // Сюда положим распарсенное число
-            else if (double.TryParse(t.Text, out double number) && number >= 0 && number <= 1)
-            {
-                prevvalue = t.Text;
-                prevselectionstart = t.SelectionStart;
-                prevselectionend = t.SelectionLength;
-            }
-            else
-            {
-                var savedselectionstart = prevselectionstart; // Сохранение правильных границ select
-                var savedselectionend = prevselectionend;
-                t.Text = prevvalue; // В WPF в момент записи нового текста обнуляются границы select
-
-                prevselectionstart = savedselectionstart; // Восстановление границ select
-                prevselectionend = savedselectionend;
-                t.Select(prevselectionstart, prevselectionend);
-            }
+           
 
         }
 
@@ -162,6 +140,31 @@ namespace Viscosity_WPF
                 OutPutUnit.SelectedIndex = 1;
             }
                
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int val;
+            if (!Int32.TryParse(e.Text, out val))
+            {
+                e.Handled = true; // отклоняем ввод
+            }
+            else
+            {
+                this.SourceValue.Text += val.ToString();
+            }
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true; // если пробел, отклоняем ввод
+            }
+            else if (e.Key == Key.Back)
+            {
+                this.SourceValue.Text = this.SourceValue.Text.Remove(SourceValue.Text.Length - 1);
+            }
         }
     }
 }
