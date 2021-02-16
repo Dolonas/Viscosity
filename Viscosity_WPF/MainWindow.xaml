@@ -32,19 +32,20 @@
             <TextBlock FontSize="20" FontFamily="Calibri" HorizontalAlignment="Center"
                         Margin="0 8 10 10" >Исходная:</TextBlock>
             <RadioButton GroupName="SourceViscosityType" Name="radioSourseKinematicBotton" Content="Кинематическая" FontSize="14" IsChecked="True"
-                          Margin="60 5 0 0" Checked="SourceKinematicMode_Checked" FontWeight="DemiBold"/>
+                          Margin="60 5 0 0" Checked="SourceKinematicMode_Checked" FontWeight="DemiBold" Padding="4,-4,0,1"/>
             <RadioButton GroupName="SourceViscosityType" Name="radioSourseDinamicBotton" Content="Динамическая" FontSize="14"
-                            Margin="60 5 0 0" Checked="SourceDinamicMode_Checked"/>
+                            Margin="60,5,0,0" Checked="SourceDinamicMode_Checked" Padding="4,-4,0,1"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
             <TextBlock FontSize="20" FontFamily="Calibri" HorizontalAlignment="Center"
                         Margin="0 8 10 10" >Вычисляемая:</TextBlock>
             <RadioButton GroupName="OutPutViscosityType" Name="radioOutputKinematicBotton" Content="Кинематическая" FontSize="14" IsChecked="True"
-                          Margin="60 5 0 0" Checked="OutputKinematicMode_Checked" FontWeight="DemiBold"/>
+                          Margin="60 5 0 0" Checked="OutputKinematicMode_Checked" FontWeight="DemiBold" Padding="4,-4,0,1"/>
             <RadioButton GroupName="OutPutViscosityType" Name="radioOutputDinamicBotton" Content="Динамическая" FontSize="14"  Margin="60 5 0 0"
-                         Checked="OutputDinamicMode_Checked"/>
+                         Checked="OutputDinamicMode_Checked" Padding="4,-4,0,1"/>
         </StackPanel>
-        <StackPanel Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal">
+        <StackPanel Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal"
+                    FocusManager.FocusedElement="{Binding ElementName=SourceValue}">
             <WrapPanel>
             <TextBlock FontSize="20" FontFamily="Calibri" HorizontalAlignment="Left"
                         Margin="0 8 5 10" >Исходное значение:</TextBlock>

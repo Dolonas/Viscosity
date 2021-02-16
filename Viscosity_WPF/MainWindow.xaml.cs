@@ -16,6 +16,7 @@ namespace Viscosity_WPF
         internal string outputString = "0";
         internal double sourceValue = 1;
         internal double outputValue = 0;
+        internal visKUnit 
         public string prevvalue = "";
         public int prevselectionstart = 0;
         public int prevselectionend = 0;
@@ -75,9 +76,12 @@ namespace Viscosity_WPF
 
         private void SourceValue_Changed(object sender, RoutedEventArgs e)
         {
-            var t = (TextBox)sender;
+            //var t = (TextBox)sender;
+            if (Double.TryParse(SourceValue.Text, out double value))
+            {
+                outputValue = ViscosityCalc.ViscosityTranslate(value);
+            }
 
-           
 
         }
 
@@ -145,7 +149,7 @@ namespace Viscosity_WPF
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             int val;
-            if (!Int32.TryParse(e.Text, out val))
+            if (!Int32.TryParse(e.Text, out val) || this.SourceValue.Text.Length > 9)
             {
                 e.Handled = true; // отклоняем ввод
             }
@@ -166,5 +170,9 @@ namespace Viscosity_WPF
                 this.SourceValue.Text = this.SourceValue.Text.Remove(SourceValue.Text.Length - 1);
             }
         }
+
+        
+
+        
     }
 }
